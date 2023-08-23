@@ -70,7 +70,7 @@ public class JpaMain {
                 System.out.println("member.name = " + member.getName());
             }
 
-            // 커밋 반드시.
+            // 커밋 반드시 해야 함.
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
