@@ -5,11 +5,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-// 영속성 컨텍스트를 플러시하는 방법
-// 1) em.flush() - 직접 호출
-// 2) 트랜잭션 커밋 - 플러시 자동 호출
-// 3) JPQL 쿼리 실행 - 플러시 자동 호출
-public class ex05 {
+public class Ex02 {
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
 
@@ -20,15 +16,14 @@ public class ex05 {
 
         try {
             // 영속
-            Member member = new Member(200L, "member200");
-            em.persist(member);
+            // select문이 1번만 실행. 2번째부터는 1차 캐시에서 조회
+            Member findMember1 = em.find(Member.class, 101L);
+            Member findMember2 = em.find(Member.class, 101L);
             
-            // 1) 직접 호출
-            // 트랜잭션 COMMIT 이전에 미리 DB에 반영하거나, 쿼리를 보고싶은 경우 강제호출
-            em.flush();
+            // 영속 엔티티의 동일성 보장
+            System.out.println("result = " + (findMember1 == findMember2));     // result = true
 
-            System.out.println("=========================");
-            tx.commit();    // 2) 트랜잭션 커밋시 플러시 자동 호출
+            tx.commit();    // 트랜잭션을 커밋하는 순간에 DB로
         } catch (Exception e) {
             tx.rollback();
         } finally {

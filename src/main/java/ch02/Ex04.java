@@ -5,7 +5,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-public class ex02 {
+// 엔티티 수정
+public class Ex04 {
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
 
@@ -16,14 +17,16 @@ public class ex02 {
 
         try {
             // 영속
-            // select문이 1번만 실행. 2번째부터는 1차 캐시에서 조회
-            Member findMember1 = em.find(Member.class, 101L);
-            Member findMember2 = em.find(Member.class, 101L);
-            
-            // 영속 엔티티의 동일성 보장
-            System.out.println("result = " + (findMember1 == findMember2));     // result = true
+            // JPA는 값을 바꾸면 트랜잭션이 커밋되는 시점에 변경을 반영한다.
+            Member member = em.find(Member.class, 150L);
+            member.setName("ZZZZZ");
 
-            tx.commit();    // 트랜잭션을 커밋하는 순간에 DB로
+            // 필요 없는 코드
+            // em.persist(member);
+
+            System.out.println("=========================");    
+
+            tx.commit();
         } catch (Exception e) {
             tx.rollback();
         } finally {

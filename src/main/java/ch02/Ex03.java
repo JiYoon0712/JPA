@@ -5,8 +5,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-// 엔티티 수정
-public class ex04 {
+// 엔티티 등록
+public class Ex03 {
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
 
@@ -17,12 +17,11 @@ public class ex04 {
 
         try {
             // 영속
-            // JPA는 값을 바꾸면 트랜잭션이 커밋되는 시점에 변경을 반영한다.
-            Member member = em.find(Member.class, 150L);
-            member.setName("ZZZZZ");
+            Member member1 = new Member(150L, "A");
+            Member member2 = new Member(160L, "B");
 
-            // 필요 없는 코드
-            // em.persist(member);
+            em.persist(member1);
+            em.persist(member2);
 
             System.out.println("=========================");    
 

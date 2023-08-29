@@ -9,7 +9,7 @@ import javax.persistence.Persistence;
 // 1) em.detach(entity) : 특정 엔티티만 준영속 상태로 전환
 // 2) em.clear() : 영속성 컨텍스트를 완전히 초기화
 // 3) em.close() : 영속성 컨텍스트를 종료
-public class ex06 {
+public class Ex06 {
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
 
