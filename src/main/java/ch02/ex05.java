@@ -9,7 +9,7 @@ import javax.persistence.Persistence;
 // 1) em.flush() - 직접 호출
 // 2) 트랜잭션 커밋 - 플러시 자동 호출
 // 3) JPQL 쿼리 실행 - 플러시 자동 호출
-public class ex05 {
+public class Ex05 {
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
 
