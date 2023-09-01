@@ -11,8 +11,13 @@ public class Member6 {
     @Column(name = "USERNAME")
     private String username;
 
-    @Column(name="TEAM_ID")
-    private Long teamId;
+//    @Column(name="TEAM_ID")
+//    private Long teamId;
+
+    // Member6 : Team = 다 : 1
+    @ManyToOne
+    @JoinColumn(name="TEAM_ID")
+    private Team team;
 
     public Long getId() {
         return id;
@@ -30,11 +35,17 @@ public class Member6 {
         this.username = username;
     }
 
-    public Long getTeamId() {
-        return teamId;
+    public Team getTeam() {
+        return team;
     }
 
-    public void setTeamId(Long teamId) {
-        this.teamId = teamId;
+    public void setTeam(Team team) {
+        this.team = team;
     }
+
+    // setTeam > changeTeam으로 변경해서 사용.
+//    public void changeTeam(Team team) {
+//        this.team = team;
+//        team.getMembers().add(this);
+//    }
 }
