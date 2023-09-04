@@ -61,7 +61,7 @@ public class JpaMain {
             //  : JPA는 SQL을 추상화한 JPQL 객체 지향 쿼리 언어 제공
             //  : 테이블이 아닌 객체를 대상으로 검색하는 객체 지향 쿼리
             //  * JPQL : 엔티티 객체를 대상으로 쿼리 / * SQL : 데이터베이스 테이블을 대상으로 쿼리
-            List<Member> result = em.createQuery("select m from Member as m", Member.class)
+            List<Member> result = em.createQuery("select m from Member8 as m", Member.class)
                     .setFirstResult(5)  // 5번부터
                     .setMaxResults(8)   // 8개 가져오라.
                     .getResultList();
